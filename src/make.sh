@@ -4,7 +4,7 @@
 
 #set -x
 
-target="read-file"
+target="read-file write"
 
 for tag in $target
 do
