@@ -4,7 +4,7 @@
 
 #set -x
 
-target="read-file write iterator exec dining-philosophers"
+target="read-file write iterator exec dining-philosophers args"
 
 for tag in $target
 do
