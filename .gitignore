@@ -42,3 +42,4 @@ vec
 exec
 dining-philosophers
 args
+string
