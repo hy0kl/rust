@@ -43,3 +43,5 @@ exec
 dining-philosophers
 args
 string
+test
+test.rs
