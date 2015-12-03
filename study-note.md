@@ -22,3 +22,8 @@
 - 用`=`来定义关联类型。
 - FFI Foreign Function Interface
 - Rust强制确保“锁住的是数据，而非代码”。
+- unreachable!()宏
+- `Debug trait`让我们可以使用`{:?}`格式运算符打印枚举值。
+- 值得注意的是你只能在一个返回Result的函数中使用`try!`，这意味着你不能在`main()`中使用`try!`，因为`main()`不返回任何东西。
+- Rc: refcount, 引用计数
+- Arc: 原子计数
