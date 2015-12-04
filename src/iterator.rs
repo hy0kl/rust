@@ -78,4 +78,13 @@ fn main() {
         .take(5)
         .collect::<Vec<i32>>();
     println!("filter: {:?}", filter);
+
+    // 打印奇数两两组合,使用带标签的 continue/break 来实现
+    'outer: for x in 0..10 {
+        'inner: for y in 0..10 {
+            if x % 2 == 0 { continue 'outer; } // continues the loop over x
+            if y % 2 == 0 { continue 'inner; } // continues the loop over y
+            println!("x: {}, y: {}", x, y);
+        }
+    }
 }
