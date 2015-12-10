@@ -45,7 +45,7 @@
 
 ## time
 
-```
+```Rust
 extern crate time;
 
 fn main() {
