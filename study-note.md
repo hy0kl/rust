@@ -40,3 +40,22 @@
 - 当涉及到多态的代码时，需要一个机制来决定哪个具体的版本应该得到执行。这叫做“分发”（dispatch）。大体上有两种形式的分发：静态分发和动态分发。虽然Rust喜欢静态分发，不过它也提供了一个叫做“trait对象”的机制来支持动态分发。
 - 有一个相关的环境的匿名函数叫做“闭包”，因为它们包含在同一个环境中。
 - 可以使用`move`关键字强制使我们的闭包取得它环境的所有权
+
+# 小模块示例代码
+
+## time
+
+```
+extern crate time;
+
+fn main() {
+    let time_now = time::now();
+    println!("{:?}", time_now);
+
+    let time = time::get_time();
+    println!("{:?}", time);
+
+    let time_str = time::strftime("%Y-%m-%d %H:%M:%S", &time_now);
+    println!("{:?}", time_str);
+}
+```
