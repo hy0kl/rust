@@ -3,8 +3,13 @@ use self::error::Error;
 
 extern crate time;
 
+extern crate ansi_term;
+use ansi_term::Colour::{Red, Green, Yellow, Blue, Purple, Cyan};
+
 fn main() {
-    println!("--- Test error Model ---");
+    println!("--- {} ---", Red
+        //.blink()
+        .bold().paint("Test error Model").to_string());
 
     let code    = Error::get_code(&Error::Success);
     let message = Error::get_message(&Error::Success);
@@ -12,7 +17,7 @@ fn main() {
 
     println!("--- END ---");
 
-    println!("\n--- Time ---");
+    println!("\n--- {} ---", Green.bold().paint("Time").to_string());
     let time_now = time::now();
     println!("{:?}", time_now);
 
