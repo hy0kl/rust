@@ -51,4 +51,23 @@ fn main() {
     let encode_str = json_obj.to_json();
     println!("encode_str: {}", encode_str.to_string());
     println!("--- END ---");
+
+    println!("\n--- {} ---", Purple.bold().paint("BTreeMap".to_string()));
+    // BTreeMap 的 key 只能是同一种类型
+    let mut map   = BTreeMap::new();
+    let mut n_map = BTreeMap::new();
+    n_map.insert(0, "Hi, world");
+    n_map.insert(1, "a");
+    n_map.insert(2, "b");
+    map.insert("key", "value");
+    map.insert("os", "linux terminal");
+    let n_keys: Vec<_>      = n_map.keys().cloned().collect();
+    let n_values: Vec<&str> = n_map.values().cloned().collect();
+    let keys: Vec<&str>   = map.keys().cloned().collect();
+    let values: Vec<&str> = map.values().cloned().collect();
+    println!("n_map->keys:   {:?}", n_keys);
+    println!("n_map->values: {:?}", n_values);
+    println!("map->keys:   {:?}", keys);
+    println!("map->values: {:?}", values);
+    println!("--- END ---");
 }
