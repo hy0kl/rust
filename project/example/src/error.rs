@@ -1,20 +1,20 @@
 pub enum Error {
-    Success,
     Unkown,
+    Success,
 }
 
 impl Error {
     pub fn get_code(&self) -> i32 {
         match *self {
+            Error::Unkown  => -1,
             Error::Success => 0,
-            Error::Unkown  => -2,
         }
     }
 
     pub fn get_message(&self) -> &'static str {
         match *self {
-            Error::Success => "OK",
             Error::Unkown  => "Undefined error.",
+            Error::Success => "OK",
         }
     }
 }

@@ -2,3 +2,6 @@
 name = "example"
 version = "0.1.0"
 authors = ["Jerry Yang <hy0kle@gmail.com>"]
+
+[dependencies]
+time = "*"
