@@ -4,7 +4,7 @@ pub enum Error {
 }
 
 impl Error {
-    pub fn get_code(&self) -> i32 {
+    pub fn get_code(&self) -> i64 {
         match *self {
             Error::Unkown  => -1,
             Error::Success => 0,
