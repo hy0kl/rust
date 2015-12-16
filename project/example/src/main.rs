@@ -40,9 +40,9 @@ fn main() {
     let json_str = "{\"code\":0,\"message\":\"OK\",\"data\":{\"keyword\":\"Rust, api, php, nginx\"},\"ip\":[\"192.168.0.168\",\"127.0.0.1\"]}";
     println!("json_str: {}", Blue.paint(json_str.to_string()));
     //let json: api_result::Body = json::decode(&json_str).unwrap();
-    let mut obj = BTreeMap::new();
-    obj.insert("os".to_string(), "linux".to_string());
-    obj.insert("test".to_string(), "array".to_string());
+    let mut obj: BTreeMap<String, json::Json> = BTreeMap::new();
+    obj.insert("os".to_string(), json::Json::from_str("{\"page\": 11, \"os\": \"Linux, Unix, MacOS\"}").unwrap());
+    obj.insert("test".to_string(), json::Json::from_str("[\"just test\"]").unwrap());
     let json_obj = api_result::Body {
         code: code,
         message: message.to_string(),

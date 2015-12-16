@@ -8,7 +8,7 @@ use rustc_serialize::json::{self, ToJson, Json};
 pub struct Body {
     pub code: i64,
     pub message: String,
-    pub data: BTreeMap<String, String>, // BTreeMap 类型编译器无法自动实现
+    pub data: BTreeMap<String, json::Json>, // BTreeMap 类型编译器无法自动实现
 }
 
 impl ToJson for Body {
