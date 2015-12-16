@@ -34,6 +34,8 @@
 tags
 
 # project
+Cargo.lock
+target
 read-file
 foo.txt
 write
