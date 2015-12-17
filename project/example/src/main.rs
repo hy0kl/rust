@@ -104,7 +104,7 @@ fn main() {
     let opts = MyOpts {
         user: Some("dev".to_string()),
         pass: Some("dev".to_string()),
-        //init: vec!["SET NAMES utf8; use test;".to_owned()],
+        //init: vec!["SET NAMES utf8; use test;".to_owned()], // 加入此行无法写数据.
         ..Default::default()
     };
     let pool = MyPool::new(opts).unwrap();
