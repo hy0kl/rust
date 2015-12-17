@@ -8,8 +8,8 @@ extern crate time;
 extern crate ansi_term;
 use ansi_term::Colour::{Red, Green, Yellow, Blue, Purple, Cyan};
 
+pub mod model;
 pub mod api_result;
-//use api_result::Body;
 
 extern crate rustc_serialize;
 use rustc_serialize::json::{self, ToJson, Json};
@@ -73,4 +73,9 @@ fn main() {
         println!("map.{} = {}", k, v);
     }
     println!("--- END ---");
+
+    println!("\n--- {} ---", Cyan.bold().paint("UserModel"));
+    let mut user: model::user::UserModel = model::user::UserModel::new();
+    user.set_id(123);
+    println!("user: {}", user);
 }
