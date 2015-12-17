@@ -41,8 +41,8 @@ fn main() {
     println!("json_str: {}", Blue.paint(json_str.to_string()));
     //let json: api_result::Body = json::decode(&json_str).unwrap();
     let mut obj: BTreeMap<String, json::Json> = BTreeMap::new();
-    obj.insert("os".to_string(), json::Json::from_str("{\"page\": 11, \"os\": \"Linux, Unix, MacOS\"}").unwrap());
-    obj.insert("test".to_string(), json::Json::from_str("[\"just test\"]").unwrap());
+    obj.insert("os".to_string(), json::Json::from_str("{\"page\": 11, \"os\": \"Linux, Unix, MacOS\"}").unwrap_or_else(|e| { panic!("failed to execute process: {}", e) }));
+    obj.insert("test".to_string(), json::Json::from_str("[\"just test\"]").unwrap_or_else(|e| { panic!("failed to execute process: {}", e) }));
     let json_obj = api_result::Body {
         code: code,
         message: message.to_string(),
@@ -69,5 +69,8 @@ fn main() {
     println!("n_map->values: {:?}", n_values);
     println!("map->keys:   {:?}", keys);
     println!("map->values: {:?}", values);
+    for (k, v) in map.iter() {
+        println!("map.{} = {}", k, v);
+    }
     println!("--- END ---");
 }
