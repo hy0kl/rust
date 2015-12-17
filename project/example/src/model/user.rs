@@ -7,7 +7,7 @@ pub struct UserModel {
     pub id: u64,
     pub nickname: String,
     pub mobile: String,
-    //email: RefCell<String>,
+    pub email: String,
     //status: i8,
     //ctime: String,
     //mtime: String,
@@ -18,15 +18,17 @@ impl UserModel {
         UserModel {
             id: 0,
             nickname: "".to_string(),
-            mobile: "".to_string(),
+            mobile:   "".to_string(),
+            email:    "".to_string(),
         }
     }
 
-    pub fn create(id: u64, nickname: String, mobile: String) -> UserModel {
+    pub fn create(id: u64, nickname: String, mobile: String, email: String) -> UserModel {
         UserModel {
             id: id,
             nickname: nickname,
-            mobile: mobile,
+            mobile:   mobile,
+            email:    email,
         }
     }
 }
@@ -36,7 +38,8 @@ impl fmt::Display for UserModel {
         let mut buf: String = "".to_string();
         buf = buf + &format!("id: {:?}, ", self.id);
         buf = buf + &format!("nickname: \"{}\", ", self.nickname);
-        buf = buf + &format!("mobile: \"{}\"", self.mobile);
+        buf = buf + &format!("mobile: \"{}\", ", self.mobile);
+        buf = buf + &format!("email: \"{}\"", self.email);
 
         write!(f, "UserModel:{{{}}}", buf)
     }

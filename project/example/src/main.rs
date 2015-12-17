@@ -79,7 +79,7 @@ fn main() {
     // error: cannot assign to immutable field
     //empty_user.id = 110;
     println!("empty_user -> {}", empty_user);
-    let mut user = model::user::UserModel::create(1, "Admin".to_string(), "15801398759".to_string());
+    let mut user = model::user::UserModel::create(1, "Admin".to_string(), "15801398759".to_string(), "abc@qq.com".to_string());
     println!("debug for user: {}", user);
     user.id = 100;
     user.nickname = "OP".to_string();
