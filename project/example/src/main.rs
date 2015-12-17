@@ -123,10 +123,28 @@ fn main() {
             for p in users.iter() {
                 // `execute` takes ownership of `params` so we pass account name by reference.
                 // Unwrap each result just to make sure no errors happended.
-                stmt.execute((&p.nickname, &p.mobile, &p.email));
+                let _ig = stmt.execute((&p.nickname, &p.mobile, &p.email));
             }
         }
     } else {
         println!("{}", Yellow.blink().bold().paint("SELECT"));
+        let selected: Vec<model::user::UserModel> = pool.prep_exec("SELECT id, nickname, mobile, email FROM test.user", ())
+            .map(|result| { // In this closure we sill map `QueryResult` to `Vec<T>`
+                // `QueryResult` is iterator over `MyResult<row, err>` so first call to `map`
+                // will map each `MyResult` to contained `row` (no proper error handling)
+                // and second call to `map` will map each `row` to `struct`
+                result.map(|x| x.unwrap()).map(|row| {
+                    let (id, nickname, mobile, email) = from_row(row);
+                    model::user::UserModel {
+                        id: id,
+                        nickname: nickname,
+                        mobile: mobile,
+                        email: email,
+                    }
+                }).collect() // Collect payments so now `QueryResult` is mapped to `Vec<T>`
+        }).unwrap(); // Unwrap `Vec<T>`
+        for i in 0 .. selected.len() {
+            println!("selected[{}]: {}", i, selected[i]);
+        }
     }
 }
