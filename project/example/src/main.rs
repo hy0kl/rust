@@ -108,26 +108,25 @@ fn main() {
         ..Default::default()
     };
     let pool = MyPool::new(opts).unwrap();
-    //let nickname = user.nickname;
-    //let mobile   = user.mobile;
-    //let email    = user.email;
-    //let res = pool.prepare("INSERT INTO test.user SET nickname = ?, mobile = ?, email = ?").and_then(|mut stmt| {
-    //    stmt.execute((nickname, mobile, email));
-    //    Ok(())
-    //});
-    //println!("res: {:?}", res);
-    let mut users = vec![
-        model::user::UserModel{id : 1, nickname: "admin".to_string(), mobile: "15811119890".to_string(), email: "158@qq.com".to_string()},
-    ];
-    users.push(user);
-    for mut stmt in pool.prepare(r"INSERT INTO test.user
-            (id, nickname, mobile, email)
-            VALUES
-            (NULL, ?, ?, ?)").into_iter() {
-        for p in users.iter() {
-            // `execute` takes ownership of `params` so we pass account name by reference.
-            // Unwrap each result just to make sure no errors happended.
-            stmt.execute((&p.nickname, &p.mobile, &p.email)).unwrap();
+    //let method = "insert";
+    let method = "select";
+    if "insert" == method {
+        println!("{}", Yellow.blink().bold().paint("INSERT"));
+        let mut users = vec![
+            model::user::UserModel{id : 1, nickname: "admin".to_string(), mobile: "15811119890".to_string(), email: "158@qq.com".to_string()},
+        ];
+        users.push(user);
+        for mut stmt in pool.prepare(r"INSERT INTO test.user
+                (id, nickname, mobile, email)
+                VALUES
+                (NULL, ?, ?, ?)").into_iter() {
+            for p in users.iter() {
+                // `execute` takes ownership of `params` so we pass account name by reference.
+                // Unwrap each result just to make sure no errors happended.
+                stmt.execute((&p.nickname, &p.mobile, &p.email));
+            }
         }
+    } else {
+        println!("{}", Yellow.blink().bold().paint("SELECT"));
     }
 }
