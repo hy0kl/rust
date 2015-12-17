@@ -1,14 +1,15 @@
 use std::fmt;
-use std::cell::{Cell, RefCell};
+use std::borrow::Cow;
+use std::default::Default;
 
 extern crate rustc_serialize;
 use rustc_serialize::json;
 
 //#[derive(RustcDecodable, RustcEncodable)]
 pub struct UserModel {
-    id: Cell<u64>,
-    //nickname: Cell<Vec<String>>,
-    //mobile: RefCell<String>,
+    pub id: u64,
+    pub nickname: String,
+    pub mobile: String,
     //email: RefCell<String>,
     //status: i8,
     //ctime: String,
@@ -16,17 +17,20 @@ pub struct UserModel {
 }
 
 impl UserModel {
-    pub fn new () -> UserModel {
+    pub fn create_empty() -> UserModel {
         UserModel {
-            id:       Cell::new(0),
-            //nickname: Cell::new(vec!("abc".to_string())),
-            //mobile:   RefCell::new("".to_string()),
-            //email:    RefCell::new("".to_string()),
+            id: 0,
+            nickname: "".to_string(),
+            mobile: "".to_string(),
         }
     }
 
-    pub fn set_id(&self, id: u64) {
-        self.id.set(id);
+    pub fn create(id: u64, nickname: String, mobile: String) -> UserModel {
+        UserModel {
+            id: id,
+            nickname: nickname,
+            mobile: mobile,
+        }
     }
 }
 
@@ -34,7 +38,9 @@ impl fmt::Display for UserModel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut buf: String = "".to_string();
         buf = buf + &format!("id: {:?}, ", self.id);
+        buf = buf + &format!("nickname: \"{}\", ", self.nickname);
+        buf = buf + &format!("mobile: \"{}\"", self.mobile);
 
-        write!(f, "Hi: {}", buf)
+        write!(f, "UserModel:{{{}}}", buf)
     }
 }

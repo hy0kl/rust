@@ -75,7 +75,11 @@ fn main() {
     println!("--- END ---");
 
     println!("\n--- {} ---", Cyan.bold().paint("UserModel"));
-    let mut user: model::user::UserModel = model::user::UserModel::new();
-    user.set_id(123);
-    println!("user: {}", user);
+    let empty_user = model::user::UserModel::create_empty();
+    println!("empty_user -> {}", empty_user);
+    let mut user = model::user::UserModel::create(1, "Admin".to_string(), "15801398759".to_string());
+    println!("debug for user: {}", user);
+    user.id = 100;
+    user.nickname = "OP".to_string();
+    println!("debug for user after modify: {}", user);
 }
