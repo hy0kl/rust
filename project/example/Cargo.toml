@@ -7,3 +7,9 @@ authors = ["Jerry Yang <hy0kle@gmail.com>"]
 time = "*"
 ansi_term = "*"
 rustc-serialize = "*"
+
+# 测试 MySQL 相关
+[dependencies.mysql]
+mysql = "*"
+default-features = false
+features = ["socket"]
