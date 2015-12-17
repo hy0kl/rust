@@ -1,11 +1,8 @@
 use std::fmt;
-use std::borrow::Cow;
-use std::default::Default;
 
 extern crate rustc_serialize;
-use rustc_serialize::json;
 
-//#[derive(RustcDecodable, RustcEncodable)]
+#[derive(RustcDecodable, RustcEncodable)]
 pub struct UserModel {
     pub id: u64,
     pub nickname: String,

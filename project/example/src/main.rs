@@ -84,4 +84,6 @@ fn main() {
     user.id = 100;
     user.nickname = "OP".to_string();
     println!("debug for user after modify: {}", user);
+    let user_json = json::encode(&user).unwrap();
+    println!("user_json: {}", user_json);
 }
